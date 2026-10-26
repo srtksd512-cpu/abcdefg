@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For Ameera 💖</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --rose: #ff4d7d;
+        --blush: #ffb3c6;
+        --gold: #ffd98a;
+        --cream: #fff4f7;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        font-family: "Quicksand", sans-serif;
+        color: var(--cream);
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          #6b1438 0%,
+          #2a0716 45%,
+          #0d0208 100%
+        );
+        overflow: hidden;
+        user-select: none;
+        cursor: default;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: -20%;
+        pointer-events: none;
+        z-index: 0;
+        background:
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(255, 77, 125, 0.28),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(255, 210, 122, 0.18),
+            transparent 40%
+          );
+        animation: drift 18s ease-in-out infinite alternate;
+      }
+      @keyframes drift {
+        to {
+          transform: translate(-4%, 3%) rotate(3deg);
+        }
+      }
+
+      /* ---------- Background floating hearts ---------- */
+      .bg-heart {
+        position: fixed;
+        bottom: -60px;
+        color: rgba(255, 179, 198, 0.45);
+        pointer-events: none;
+        z-index: 1;
+        animation: rise linear infinite;
+      }
+      @keyframes rise {
+        from {
+          transform: translateY(0) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        to {
+          transform: translateY(-110vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* ---------- Canvas effects ---------- */
+      canvas#fx {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 50;
+      }
+
+      /* ---------- Screens ---------- */
+      .screen {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        text-align: center;
+        z-index: 10;
+        perspective: 1200px;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(40px) scale(0.96) rotateX(8deg);
+        transition:
+          opacity 0.9s ease,
+          transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .screen.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+      }
+
+      h1,
+      h2,
+      .script {
+        font-family: "Great Vibes", cursive;
+        font-weight: 400;
+      }
+      h1 {
+        font-size: clamp(3.2rem, 10vw, 7.5rem);
+        line-height: 1.05;
+        background: linear-gradient(
+          120deg,
+          #fff,
+          var(--blush),
+          var(--gold),
+          #fff
+        );
+        background-size: 250% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        animation: shine 4s linear infinite;
+        filter: drop-shadow(0 0 30px rgba(255, 77, 125, 0.45));
+      }
+      @keyframes shine {
+        to {
+          background-position: 250% center;
+        }
+      }
+      h2 {
+        font-size: clamp(2.4rem, 7vw, 4.8rem);
+        color: var(--gold);
+        text-shadow: 0 0 25px rgba(255, 210, 122, 0.4);
+      }
+      p.lead {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+        opacity: 0.9;
+        max-width: 620px;
+        line-height: 1.7;
+        margin-top: 18px;
+      }
+      .hint {
+        margin-top: 22px;
+        font-size: 0.9rem;
+        opacity: 0.6;
+        letter-spacing: 0.5px;
+      }
+
+      /* ---------- Buttons ---------- */
+      .btn {
+        position: relative;
+        overflow: hidden;
+        margin: 10px;
+        padding: 16px 38px;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        font:
+          700 1.05rem "Quicksand",
+          sans-serif;
+        color: #fff;
+        letter-spacing: 0.5px;
+        background: linear-gradient(135deg, var(--rose), #ff8fb1);
+        box-shadow:
+          0 10px 30px rgba(255, 77, 125, 0.45),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        transition:
+          transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+          box-shadow 0.35s,
+          scale 0.35s,
+          opacity 0.6s;
+      }
+      .btn::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -75%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.6),
+          transparent
+        );
+        transform: skewX(-20deg);
+        transition: left 0.7s;
+      }
+      .btn:hover {
+        transform: translateY(-6px) scale(1.06) rotateX(10deg);
+        box-shadow: 0 22px 45px rgba(255, 77, 125, 0.6);
+      }
+      .btn:hover::after {
+        left: 125%;
+      }
+      .btn:active {
+        transform: scale(0.94);
+      }
+      .btn.ghost {
+        background: transparent;
+        border: 2px solid var(--blush);
+        box-shadow: none;
+      }
+      .btn.ghost:hover {
+        background: rgba(255, 179, 198, 0.15);
+        box-shadow: 0 0 30px rgba(255, 179, 198, 0.35);
+      }
+      .btn-row {
+        position: relative;
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        min-height: 90px;
+        margin-top: 10px;
+      }
+
+      /* ---------- 3D heart ---------- */
+      .heart-wrap {
+        perspective: 600px;
+        animation: pulse 2.4s ease-in-out infinite;
+        margin-bottom: 18px;
+      }
+      .heart3d {
+        position: relative;
+        width: 170px;
+        height: 170px;
+        margin: 0 auto;
+        transform-style: preserve-3d;
+        animation: spin3d 9s linear infinite;
+        cursor: pointer;
+      }
+      .heart3d span {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 150px;
+        line-height: 1;
+        transform: translateZ(var(--z));
+        pointer-events: none;
+      }
+      .heart3d.small {
+        width: 120px;
+        height: 120px;
+      }
+      .heart3d.small span {
+        font-size: 106px;
+      }
+      @keyframes spin3d {
+        from {
+          transform: rotateY(0deg) rotateX(12deg);
+        }
+        to {
+          transform: rotateY(360deg) rotateX(12deg);
+        }
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.08);
+        }
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+
+      /* ---------- Flip cards ---------- */
+      .cards {
+        display: flex;
+        gap: 26px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 34px 0 10px;
+      }
+      .flip-card {
+        width: 240px;
+        height: 300px;
+        perspective: 1000px;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+      .flip-card:hover {
+        transform: translateY(-8px);
+      }
+      .flip-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+        transform-style: preserve-3d;
+      }
+      .flip-card.flipped .flip-inner {
+        transform: rotateY(180deg);
+      }
+      .face {
+        position: absolute;
+        inset: 0;
+        border-radius: 24px;
+        padding: 26px;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .front {
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.18),
+          rgba(255, 77, 125, 0.25)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      }
+      .flip-card:hover .front {
+        box-shadow: 0 0 50px rgba(255, 77, 125, 0.5);
+      }
+      .front .emoji {
+        font-size: 3.6rem;
+        animation: float 3s ease-in-out infinite;
+      }
+      .front h3 {
+        font-family: "Great Vibes", cursive;
+        font-weight: 400;
+        font-size: 2.5rem;
+        color: var(--gold);
+        margin-top: 8px;
+      }
+      .front small {
+        opacity: 0.6;
+        margin-top: 6px;
+      }
+      .back {
+        transform: rotateY(180deg);
+        background: linear-gradient(145deg, var(--rose), #c2185b);
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: 1.2rem;
+        line-height: 1.6;
+        box-shadow: 0 20px 50px rgba(194, 24, 91, 0.5);
+      }
+
+      /* ---------- Letter ---------- */
+      .letter {
+        max-width: 580px;
+        padding: 42px 38px;
+        border-radius: 28px;
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.14),
+          rgba(255, 255, 255, 0.04)
+        );
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        transition: transform 0.25s ease-out;
+        transform-style: preserve-3d;
+      }
+      .letter .envelope {
+        font-size: 2.6rem;
+        display: block;
+        margin-bottom: 12px;
+        animation: float 3s ease-in-out infinite;
+      }
+      .letter-text {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+        line-height: 1.9;
+        min-height: 220px;
+        text-align: left;
+      }
+      .letter-text::after {
+        content: "|";
+        animation: blink 1s steps(2) infinite;
+        color: var(--gold);
+      }
+      @keyframes blink {
+        to {
+          visibility: hidden;
+        }
+      }
+
+      /* ---------- Proposal ---------- */
+      .question {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.6rem, 4.6vw, 2.7rem);
+        margin: 14px 0 6px;
+        line-height: 1.4;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        max-width: 720px;
+      }
+      #yesBtn {
+        transition:
+          transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+          scale 0.35s,
+          box-shadow 0.35s;
+      }
+      #noBtn {
+        transition:
+          transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+          background 0.3s;
+      }
+
+      /* ---------- Celebration ---------- */
+      .ring {
+        font-size: 8rem;
+        margin-bottom: 10px;
+        filter: drop-shadow(0 0 40px rgba(255, 210, 122, 0.7));
+        animation: ringSpin 4s ease-in-out infinite;
+        display: inline-block;
+      }
+      @keyframes ringSpin {
+        0%,
+        100% {
+          transform: rotateY(0deg) translateY(0);
+        }
+        50% {
+          transform: rotateY(180deg) translateY(-14px);
+        }
+      }
+
+      /* ---------- Popups & sparkles ---------- */
+      .pop {
+        position: fixed;
+        z-index: 60;
+        pointer-events: none;
+        white-space: nowrap;
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: 1.2rem;
+        color: var(--gold);
+        text-shadow: 0 0 14px rgba(255, 210, 122, 0.6);
+        animation: popUp 2.2s ease forwards;
+      }
+      @keyframes popUp {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, 0) scale(0.6);
+        }
+        20% {
+          opacity: 1;
+          transform: translate(-50%, -20px) scale(1.1);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -110px) scale(1) rotateX(20deg);
+        }
+      }
+      .spark {
+        position: fixed;
+        z-index: 55;
+        pointer-events: none;
+        font-size: 14px;
+        transform: translate(-50%, -50%);
+        animation: sparkFade 0.9s forwards;
+      }
+      @keyframes sparkFade {
+        to {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0.2) rotate(180deg);
+        }
+      }
+
+      /* ---------- Mobile tweaks ---------- */
+      @media (max-width: 520px) {
+        .letter {
+          padding: 30px 22px;
+        }
+        .flip-card {
+          width: 200px;
+          height: 260px;
+        }
+        .heart3d {
+          width: 140px;
+          height: 140px;
+        }
+        .heart3d span {
+          font-size: 124px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- SCREEN 1: Birthday intro -->
+    <section class="screen active" id="s1">
+      <div class="heart-wrap"><div class="heart3d" data-heart></div></div>
+      <p
+        class="script"
+        style="font-size: 2rem; color: var(--blush); margin-bottom: 4px"
+      >
+        a little surprise, just for you...
+      </p>
+      <h1>Happy Birthday,<br />Ameera 🎂</h1>
+      <p class="lead">
+        Today the whole universe agreed to celebrate you. And I have one very
+        important thing to ask.
+      </p>
+      <button class="btn" data-next="s2">Open my surprise 🎁</button>
+      <p class="hint">✨ tap anywhere for little surprises ✨</p>
+    </section>
+
+    <!-- SCREEN 2: Three reasons -->
+    <section class="screen" id="s2">
+      <h2>Three reasons you're my favorite</h2>
+      <p class="lead">Tap each card to uncover them</p>
+      <div class="cards">
+        <div class="flip-card tilt">
+          <div class="flip-inner">
+            <div class="face front">
+              <span class="emoji">🌸</span>
+              <h3>Your Smile</h3>
+              <small>tap to reveal</small>
+            </div>
+            <div class="face back">
+              <p>It can fix my worst day in one second 💕</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card tilt">
+          <div class="flip-inner">
+            <div class="face front">
+              <span class="emoji">🌙</span>
+              <h3>Your Heart</h3>
+              <small>tap to reveal</small>
+            </div>
+            <div class="face back">
+              <p>
+                You love with everything you are, and I feel it every single day
+                🌙
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card tilt">
+          <div class="flip-inner">
+            <div class="face front">
+              <span class="emoji">✨</span>
+              <h3>Your Soul</h3>
+              <small>tap to reveal</small>
+            </div>
+            <div class="face back">
+              <p>
+                You're the calmest storm and the warmest light I've ever known
+                ✨
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn" data-next="s3" style="margin-top: 20px">
+        Continue 💌
+      </button>
+    </section>
+
+    <!-- SCREEN 3: Love letter -->
+    <section class="screen" id="s3">
+      <div class="letter tilt">
+        <span class="envelope">💌</span>
+        <p class="letter-text" id="letterText"></p>
+      </div>
+      <button
+        class="btn"
+        id="letterNext"
+        data-next="s4"
+        style="margin-top: 26px; opacity: 0; pointer-events: none"
+      >
+        Continue 🌹
+      </button>
+    </section>
+
+    <!-- SCREEN 4: The proposal -->
+    <section class="screen" id="s4">
+      <div class="heart-wrap"><div class="heart3d small" data-heart></div></div>
+      <h2>Ameera...</h2>
+      <p class="question">Will you stay with me for my entire life?</p>
+      <div class="btn-row">
+        <button class="btn" id="yesBtn">Yes, forever 💖</button>
+        <button class="btn ghost" id="noBtn">No 💔</button>
+      </div>
+      <p class="hint">(the "No" button is a little shy...)</p>
+    </section>
+
+    <!-- SCREEN 5: She said yes -->
+    <section class="screen" id="s5">
+      <div class="ring">💍</div>
+      <h1>She said YES!</h1>
+      <p class="lead" id="finalMsg"></p>
+      <p
+        class="script"
+        style="font-size: 2.2rem; color: var(--gold); margin-top: 12px"
+      >
+        — Taha 🤍
+      </p>
+      <button class="btn ghost" id="replay" style="margin-top: 24px">
+        Replay the magic ✨
+      </button>
+    </section>
+
+    <canvas id="fx"></canvas>
+
+    <script>
+      /* ===================== CONTENT (edit these!) ===================== */
+      const LETTER =
+        "My dearest Ameera, from the moment you came into my life, the ordinary days started to feel like poems. Your laugh became my favorite song, and your presence made every place feel like home. Today is your birthday, and I wanted to give you something you will remember forever... not just a day, but a promise. You deserve every star in the sky and every piece of my heart. 🌹";
+      const FINAL_MSG =
+        "Ameera, you just made me the happiest man alive. Happy birthday, my love. Forever starts today. 💍";
+      const COMPLIMENTS = [
+        "You are my favorite person 💕",
+        "Every day with you is a gift 🎁",
+        "Happy birthday, my queen 👑",
+        "Your laugh is my favorite sound 🎶",
+        "I'm so lucky to have you ✨",
+        "Forever isn't long enough with you 🌙",
+        "You make my heart do cartwheels 🤍",
+        "Still falling for you, every day 🌹",
+      ];
+      const NO_LINES = [
+        "Are you sure? 🥺",
+        "Think again, love 💭",
+        "Nope, not an option 😌",
+        "My heart can't take that 💔",
+        "Okay, the YES button is right there 👉",
+        "Just click yes already 😭",
+      ];
+      const COLORS = ["#ff4d7d", "#ffb3c6", "#ffd98a", "#ffffff", "#ff8fb1"];
+      /* =================================================================== */
+
+      /* ---------- Screen navigation ---------- */
+      function show(id) {
+        document
+          .querySelectorAll(".screen")
+          .forEach((s) => s.classList.toggle("active", s.id === id));
+        if (id === "s3") startLetter();
+        if (id === "s5") celebrate();
+      }
+      document
+        .querySelectorAll("[data-next]")
+        .forEach((b) =>
+          b.addEventListener("click", () => show(b.dataset.next)),
+        );
+
+      /* ---------- Typewriter ---------- */
+      let typeTimer = null;
+      function typeWriter(el, text, speed = 35) {
+        clearInterval(typeTimer);
+        el.textContent = "";
+        let i = 0;
+        return new Promise((res) => {
+          typeTimer = setInterval(() => {
+            el.textContent += text.charAt(i++);
+            if (i >= text.length) {
+              clearInterval(typeTimer);
+              res();
+            }
+          }, speed);
+        });
+      }
+      const letterEl = document.getElementById("letterText");
+      const letterNext = document.getElementById("letterNext");
+      function startLetter() {
+        letterNext.style.opacity = 0;
+        letterNext.style.pointerEvents = "none";
+        typeWriter(letterEl, LETTER, 30).then(() => {
+          letterNext.style.opacity = 1;
+          letterNext.style.pointerEvents = "auto";
+        });
+      }
+
+      /* ---------- Build 3D extruded hearts ---------- */
+      function build3DHeart(el) {
+        const LAYERS = 24;
+        for (let i = 0; i < LAYERS; i++) {
+          const s = document.createElement("span");
+          s.textContent = "♥";
+          const t = i / (LAYERS - 1);
+          s.style.setProperty("--z", t * 44 - 22 + "px");
+          s.style.color = `hsl(${345 + t * 12} ${92 - t * 25}% ${30 + t * 42}%)`;
+          el.appendChild(s);
+        }
+      }
+      document.querySelectorAll("[data-heart]").forEach((h) => {
+        build3DHeart(h);
+        let clicks = 0;
+        h.addEventListener("click", (e) => {
+          clicks++;
+          emit(e.clientX, e.clientY, 45, 6);
+          if (clicks % 5 === 0)
+            pop(
+              "Secret: I'm falling for you more every day 🌙",
+              innerWidth / 2,
+              innerHeight * 0.3,
+            );
+        });
+      });
+
+      /* ---------- Flip cards ---------- */
+      document
+        .querySelectorAll(".flip-card")
+        .forEach((c) =>
+          c.addEventListener("click", () => c.classList.toggle("flipped")),
+        );
+
+      /* ---------- 3D tilt on hover ---------- */
+      document.querySelectorAll(".tilt").forEach((el) => {
+        el.addEventListener("pointermove", (e) => {
+          const r = el.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width - 0.5;
+          const y = (e.clientY - r.top) / r.height - 0.5;
+          el.style.transform = `rotateY(${x * 18}deg) rotateX(${-y * 18}deg) translateZ(20px)`;
+        });
+        el.addEventListener("pointerleave", () => (el.style.transform = ""));
+      });
+
+      /* ---------- Background floating hearts ---------- */
+      const SYMBOLS = ["♥", "♡", "✿", "❤"];
+      for (let i = 0; i < 24; i++) {
+        const h = document.createElement("span");
+        h.className = "bg-heart";
+        h.textContent = SYMBOLS[i % SYMBOLS.length];
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.fontSize = Math.random() * 22 + 12 + "px";
+        h.style.animationDuration = Math.random() * 10 + 10 + "s";
+        h.style.animationDelay = -Math.random() * 20 + "s";
+        document.body.appendChild(h);
+      }
+
+      /* ---------- Canvas: confetti, hearts & fireworks ---------- */
+      const cv = document.getElementById("fx");
+      const ctx = cv.getContext("2d");
+      let parts = [];
+      function resize() {
+        const dpr = window.devicePixelRatio || 1;
+        cv.width = innerWidth * dpr;
+        cv.height = innerHeight * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      addEventListener("resize", resize);
+      resize();
+
+      function emit(x, y, n = 60, speed = 7) {
+        for (let i = 0; i < n; i++) {
+          const a = Math.random() * Math.PI * 2;
+          const s = Math.random() * speed + 1;
+          parts.push({
+            x,
+            y,
+            vx: Math.cos(a) * s,
+            vy: Math.sin(a) * s - 2,
+            life: 1,
+            size: Math.random() * 6 + 3,
+            color: COLORS[(Math.random() * COLORS.length) | 0],
+            rot: Math.random() * 6,
+            vr: (Math.random() - 0.5) * 0.3,
+            heart: Math.random() < 0.35,
+          });
+        }
+      }
+      function drawHeart(s) {
+        ctx.beginPath();
+        ctx.moveTo(0, s * 0.3);
+        ctx.bezierCurveTo(-s, -s * 0.3, -s * 0.5, -s, 0, -s * 0.4);
+        ctx.bezierCurveTo(s * 0.5, -s, s, -s * 0.3, 0, s * 0.3);
+        ctx.fill();
+      }
+      function loop() {
+        ctx.clearRect(0, 0, innerWidth, innerHeight);
+        parts = parts.filter((p) => p.life > 0);
+        for (const p of parts) {
+          p.vy += 0.12;
+          p.vx *= 0.985;
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.vr;
+          p.life -= 0.012;
+          ctx.save();
+          ctx.globalAlpha = Math.max(p.life, 0);
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle = p.color;
+          if (p.heart) drawHeart(p.size * 1.4);
+          else ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+          ctx.restore();
+        }
+        requestAnimationFrame(loop);
+      }
+      loop();
+
+      function firework() {
+        emit(
+          Math.random() * innerWidth,
+          Math.random() * innerHeight * 0.5 + 40,
+          70,
+          6,
+        );
+      }
+
+      /* ---------- Surprises: sparkle trail, click bursts, compliments ---------- */
+      let lastSpark = 0;
+      addEventListener("pointermove", (e) => {
+        const now = performance.now();
+        if (now - lastSpark < 50) return;
+        lastSpark = now;
+        const s = document.createElement("span");
+        s.className = "spark";
+        s.textContent = "✦";
+        s.style.left = e.clientX + "px";
+        s.style.top = e.clientY + "px";
+        s.style.color = COLORS[(Math.random() * COLORS.length) | 0];
+        document.body.appendChild(s);
+        setTimeout(() => s.remove(), 900);
+      });
+
+      function pop(text, x, y) {
+        const p = document.createElement("div");
+        p.className = "pop";
+        p.textContent = text;
+        p.style.left = x + "px";
+        p.style.top = y + "px";
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 2300);
+      }
+
+      document.addEventListener("click", (e) => {
+        emit(e.clientX, e.clientY, 18, 5);
+        if (Math.random() < 0.35)
+          pop(
+            COMPLIMENTS[(Math.random() * COMPLIMENTS.length) | 0],
+            e.clientX,
+            e.clientY - 30,
+          );
+      });
+
+      /* ---------- The proposal: shy "No" button ---------- */
+      const yesBtn = document.getElementById("yesBtn");
+      const noBtn = document.getElementById("noBtn");
+      let noCount = 0;
+      function dodge() {
+        noCount++;
+        const rangeX = Math.min(innerWidth * 0.4, 200);
+        const x = (Math.random() - 0.5) * 2 * rangeX;
+        const y = (Math.random() - 0.5) * 160;
+        noBtn.style.transform = `translate(${x}px, ${y}px) rotate(${(Math.random() - 0.5) * 20}deg)`;
+        noBtn.textContent =
+          NO_LINES[Math.min(noCount - 1, NO_LINES.length - 1)];
+        yesBtn.style.scale = 1 + Math.min(noCount, 8) * 0.08;
+      }
+      noBtn.addEventListener("pointerenter", dodge);
+      noBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        dodge();
+      });
+
+      yesBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        show("s5");
+        emit(innerWidth / 2, innerHeight / 2, 140, 11);
+      });
+
+      /* ---------- Celebration screen ---------- */
+      function celebrate() {
+        typeWriter(document.getElementById("finalMsg"), FINAL_MSG, 40);
+        let n = 0;
+        const t = setInterval(() => {
+          firework();
+          if (++n > 16) clearInterval(t);
+        }, 380);
+      }
+      document.getElementById("replay").addEventListener("click", () => {
+        noCount = 0;
+        noBtn.style.transform = "";
+        noBtn.textContent = "No 💔";
+        yesBtn.style.scale = 1;
+        show("s1");
+      });
+    </script>
+  </body>
+</html>
